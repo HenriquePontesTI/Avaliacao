@@ -1,0 +1,46 @@
+﻿@model ASC.Dominio.MateriaModel
+@{
+    ViewBag.Title = "AdicionarMateria";
+}
+
+    <h2>Cadstrar Periodo Academico</h2>
+
+
+@using (Html.BeginForm("AdicionaMateria", "Materia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h3>Matéria</h3>
+        <div class="form-group">
+            @Html.LabelFor(m => m.NumeroMateria, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.NumeroMateria,
+                                   new { @class = "form-control", @placeholder = "Numero da Materia" })
+                @Html.ValidationMessageFor(m => m.NumeroMateria, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.NomeMateria, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.NomeMateria,
+                                   new { @class = "form-control", @placeholder = "Nome da Materia" })
+                @Html.ValidationMessageFor(m => m.NomeMateria, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-success" />
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+}
+
+@Html.ActionLink("Adicionar Turmas e Alunos","AdicionaPeriodoAcademico")
+<div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

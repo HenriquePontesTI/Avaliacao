@@ -1,0 +1,40 @@
+﻿@model ASC.Dominio.PeriodoAcademicoModel
+@{
+    ViewBag.Title = "PeriodoAcademicoView";
+}
+
+    <h2>Cadstrar Periodo Academico</h2>
+
+@using (Html.BeginForm("AdicionaPeriodoAcademico", "PeriodoAcademico", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-2">Numero de Alunos</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.QtdAluno,
+                                   new { @class = "form-control", @placeholder = "Numero de Alunos" })
+                @Html.ValidationMessageFor(m => m.QtdAluno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Numero de Turmas</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.QtdTurma,
+                                   new { @class = "form-control", @placeholder = "Numero de Turmas" })
+                @Html.ValidationMessageFor(m => m.QtdTurma, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Simular" class="btn btn-success" />
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+}
+<div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,44 @@
+﻿@model ASC.Dominio.TurmaModel
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar Turma</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.HiddenFor(m => m.NumeroTurma)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NumeroTurma, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.NumeroTurma,
+                               new { @class = "form-control", @placeholder = "Numero de Turma" })
+            @Html.ValidationMessageFor(m => m.NumeroTurma, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.NomeTurma, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.NomeTurma,
+                               new { @class = "form-control", @placeholder = "Nome da Turma" })
+            @Html.ValidationMessageFor(m => m.NomeTurma, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Salvar alterações" class="btn btn-success" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

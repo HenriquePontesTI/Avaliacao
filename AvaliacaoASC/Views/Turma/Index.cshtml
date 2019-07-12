@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ASC.Dominio.TurmaModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Turmas</h2>
+
+<p>
+    @Html.ActionLink("Incluir Nova Turma", "AdicionaTurma", "Turma", new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.NumeroTurma)</th>
+        <th>@Html.DisplayNameFor(model => model.NomeTurma) </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.NumeroTurma)</td>
+            <td>@Html.DisplayFor(modelItem => item.NomeTurma)</td>
+            <td>
+                @Html.ActionLink("Editar", "EditaTurma", new { id = item.NumeroTurma }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.NumeroTurma }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.NumeroTurma })
+            </td>
+        </tr>
+    }
+</table>

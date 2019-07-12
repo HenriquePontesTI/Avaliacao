@@ -1,0 +1,74 @@
+﻿@model ASC.Dominio.PeriodoAcademicoModel
+@using ASC.Dominio
+@{
+    ViewBag.Title = "Index";
+    List<AlunoModel> alunos = (List<AlunoModel>)ViewBag.AlunosLista;
+    List<TurmaModel> turmas = (List<TurmaModel>)ViewBag.TurmasLista;
+    List<MateriaModel> materias = (List<MateriaModel>)ViewBag.MateriasLista;
+}
+
+<h2>Periodo Academico</h2>
+
+@Html.ActionLink("Incluir Novo Periodo", "AdicionaMateria", "PeriodoAcademico", new { @class = "btn btn-success" })
+
+@if (materias != null)
+{
+    foreach (var materia in materias)
+    {
+        turmas = new List<TurmaModel>(materia.Turmas);
+        <table class="table">
+            <th>Nome da Matéria</th>
+            <th></th>
+
+            <tr>
+                <td>@Html.DisplayFor(modelItem => materia.NomeMateria)</td>
+
+                <table class="table">
+                    <tr>
+                        <th>Numero da Turma</th>
+                        <th>Nome da Turma</th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var turma in materia.Turmas)
+                    {
+
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => turma.NumeroTurma)</td>
+                            <td>@Html.DisplayFor(modelItem => turma.NomeTurma)</td>
+                            <td>
+                                @*@Html.ActionLink("Detalhes", "Details", new { id = item.NumeroTurma }) |*@
+                            </td>
+                        </tr>
+                        <table class="table">
+                            <tr>
+                                <th>Matricula do Aluno</th>
+                                <th>Nome do Aluno</th>
+                                <th>Primeira Prova</th>
+                                <th>Segunda Prova</th>
+                                <th>Terceira Prova</th>
+                                <th>Resultado</th>
+                                <th></th>
+                            </tr>
+                            @foreach (var aluno in turma.Alunos)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => aluno.Matricula)</td>
+                                    <td>@Html.DisplayFor(modelItem => aluno.Nome)</td>
+                                    <td>@Html.DisplayFor(modelItem => aluno.Nota1)</td>
+                                    <td>@Html.DisplayFor(modelItem => aluno.Nota2)</td>
+                                    <td>@Html.DisplayFor(modelItem => aluno.Nota3)</td>
+                                    <td>@Html.DisplayFor(modelItem => aluno.Resultado)</td>
+                                    <td></td>
+                                </tr>
+                            }
+
+                        </table>
+                    }
+                </table>
+
+        </table>
+    }
+}
+
+

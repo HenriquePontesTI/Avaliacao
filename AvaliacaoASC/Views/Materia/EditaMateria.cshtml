@@ -1,0 +1,44 @@
+﻿@model ASC.Dominio.MateriaModel
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar Materia</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.HiddenFor(m => m.NumeroMateria)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NumeroMateria, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.NumeroMateria,
+                               new { @class = "form-control", @placeholder = "Numero de Materia" })
+            @Html.ValidationMessageFor(m => m.NumeroMateria, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.NomeMateria, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.NomeMateria,
+                               new { @class = "form-control", @placeholder = "Nome da Materia" })
+            @Html.ValidationMessageFor(m => m.NomeMateria, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Salvar alterações" class="btn btn-success" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ASC.Dominio.MateriaModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Materias</h2>
+
+<p>
+    @Html.ActionLink("Incluir Nova Matéria", "AdicionaMateria", "Materia", new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.NumeroMateria)</th>
+        <th>@Html.DisplayNameFor(model => model.NomeMateria)</th>
+        <th>@Html.DisplayNameFor(model => model.PesoProva1)</th>
+        <th>@Html.DisplayNameFor(model => model.PesoProva2)</th>
+        <th>@Html.DisplayNameFor(model => model.PesoProva3)</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.NumeroMateria)</td>
+            <td>@Html.DisplayFor(modelItem => item.NomeMateria)</td>
+            <td>@Html.DisplayFor(modelItem => item.PesoProva1)</td>
+            <td>@Html.DisplayFor(modelItem => item.PesoProva2)</td>
+            <td>@Html.DisplayFor(modelItem => item.PesoProva3)</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.NumeroMateria }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.NumeroMateria }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.NumeroMateria })
+            </td>
+        </tr>
+    }
+</table>
